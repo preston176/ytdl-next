@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { GlobeAltIcon, StarIcon, EyeIcon, SunIcon } from '@heroicons/react/24/solid';
+import Link from 'next/link';
 
 export default function Home() {
     const ICONS = [
@@ -40,7 +41,9 @@ export default function Home() {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper habitant arcu eget. Et integer facilisi eget diam.
                     </p>
                     <div className="flex gap-4 mb-8">
-                        <button className="bg-black text-white py-3 px-6 text-lg font-medium rounded-lg">Get Started</button>
+                        <Link href="/download">
+                            <button className="bg-black text-white py-3 px-6 text-lg font-medium rounded-lg">Get Started</button>
+                        </Link>
                         <button className="bg-white border border-black text-black py-3 px-6 text-lg font-medium rounded-lg">Learn More</button>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border border-black p-5 rounded">
