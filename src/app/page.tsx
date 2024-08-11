@@ -32,7 +32,7 @@ export default function Home() {
             </Head>
 
             <section className="flex flex-col lg:flex-row justify-between items-start min-h-[100vh]">
-                <div className="lg:w-1/2">
+                <div className="lg:w-1/2 md:px-10">
                     <div className="font-bold text-2xl mb-8 mt-10">LOGO</div>
                     <h1 className="text-4xl lg:text-6xl font-bold mb-4">
                         Download Videos from <span className='text-red-500'>YouTube</span>
