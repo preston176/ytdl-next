@@ -1,25 +1,30 @@
 "use client";
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
 
 interface Thumbnail {
     url: string;
 }
 
+interface AdaptiveFormat {
+    url: string;
+    qualityLabel?: string;  // Optional as it's not always present
+    audioQuality?: string;  // Optional as it's not always present
+}
+
 interface VideoData {
     title: string;
     thumbnail: Thumbnail[];
     url: string;
-    adaptiveFormats: object[];
+    adaptiveFormats: AdaptiveFormat[];
 }
-
-export default function DownloadPage() {
+const DownloadPageContent: React.FC = () => {
     const searchParams = useSearchParams();
     const videoIdFromQuery = searchParams.get('url');
     const [url, setUrl] = useState<string>(videoIdFromQuery || '');
-    const [resolution, setResolution] = useState<string>(''); 
+    const [resolution, setResolution] = useState<string>('');
     const [format, setFormat] = useState<string>('video/mp4');
     const [videoData, setVideoData] = useState<VideoData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -80,8 +85,22 @@ export default function DownloadPage() {
     };
 
     const handleDownload = async () => {
-        // Handle download logic here
-        console.log(`Downloading from ${url} at ${resolution} in ${format}`);
+        try {
+            if (!resolution) {
+                throw new Error('Please select a resolution');
+            }
+
+            const link = document.createElement('a');
+            link.href = resolution;
+            link.setAttribute('download', `${videoData?.title || 'video'}.mp4`);
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error: any) {
+            console.error('Download failed:', error.message);
+            setError('Failed to download video. Please try again.');
+        }
     };
 
     return (
@@ -132,7 +151,7 @@ export default function DownloadPage() {
                                         onChange={(e) => setResolution(e.target.value)}
                                     >
                                         {videoData?.adaptiveFormats.map((item, index: number) => (
-                                            <option key={index} value={item?.url} onChange={(e) => setResolution(e.target.value)}>
+                                            <option key={index} value={item?.url} onChange={(e) => setResolution((e.target as HTMLSelectElement).value)}>
                                                 {item.qualityLabel !== "" && item.qualityLabel ? item?.qualityLabel : item?.audioQuality}
                                             </option>))}
                                     </select>
@@ -143,7 +162,7 @@ export default function DownloadPage() {
                                         className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 
                                     >
-                                     
+
 
                                     </select>
                                 </div>
@@ -157,5 +176,13 @@ export default function DownloadPage() {
                 )}
             </div>
         </div>
+    );
+}
+
+export default function DownloadContents() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <DownloadPageContent />
+        </Suspense>
     );
 }
