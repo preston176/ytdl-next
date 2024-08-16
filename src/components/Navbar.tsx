@@ -6,7 +6,7 @@ import Link from 'next/link';
 const Navbar = () => {
     const links = [
         { name: 'Home', link: '/' },
-        { name: 'About me', link: 'about' },
+        { name: 'About', link: 'about' },
         { name: 'Projects', link: 'projects' },
         { name: 'Contact me', link: 'contact' },
     ];
@@ -36,7 +36,7 @@ const Navbar = () => {
 
                 {/* navbar */}
                 <ul
-                    className={`sticky md:flex md:items-center md:pd-0 md:static md:z-auto z-10 left-0 w-full md:w-auto mt-4 md:pl-0 pl-9 sm:bg-transparent transition-all duration-500 ease-in-out mobile-menu ${open ? 'open' : ''}`}
+                    className={`sticky md:flex md:items-center md:pd-0 md:static md:z-auto z-10 left-0 w-full md:w-auto mt-4 md:pl-0 pl-9 bg-slate-400 sm:bg-transparent transition-all duration-500 ease-in-out mobile-menu`}
                 >
                     {links.map((item, index) => (
                         <li key={index} className="md:ml-8 md:my-0 my:7 font-semibold">
