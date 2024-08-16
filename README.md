@@ -47,6 +47,12 @@ $ npm install
 $ npm run dev
 # Open browser http://localhost:3000
 ```
+### ENV
+```
+1. Create A `.env` file and add the following:
+```
+`NEXT_PUBLIC_RAPID_API_KEY=YOUR_RAPID_API_KEY`
+* You can get this APIKEY from [here](https://rapidapi.com/ytjar/api/ytstream-download-youtube-videos)
 
 ## Live Preview
 
