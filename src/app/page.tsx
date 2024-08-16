@@ -32,7 +32,7 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <section className="flex flex-col lg:flex-row justify-evenly items-start min-h-[100vh] md:py-10">
+            <section className="flex flex-col lg:flex-row justify-evenly items-start min-h-[100vh] md:mt-20">
                 <div className="lg:w-1/2 md:px-10 mb-18">
                     <h1 className="text-4xl lg:text-6xl font-bold mb-4 mt-20">
                         Download Videos from <span className='text-red-500'>YouTube</span>

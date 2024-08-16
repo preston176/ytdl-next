@@ -22,9 +22,9 @@ const Navbar = () => {
     };
 
     return (
-        <div className="w-full max-w-screen fixed top-0 left-0 z-50">
+        <div className="w-full max-w-screen fixed top-0 left-0 z-50 backdrop-blur">
             <div className="md:flex items-center justify-center py-4 md:px-10 px-7">
-  
+
 
                 {/* md: mobile icons */}
                 <div

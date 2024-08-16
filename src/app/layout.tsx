@@ -12,6 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <script src="//code.tidio.co/qhhancpt76pkxaxn1jz28irsb5lcuszf.js" async></script>
       <body>
       <Navbar/>
         <div>
