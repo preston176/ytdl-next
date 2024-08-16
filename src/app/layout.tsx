@@ -1,8 +1,9 @@
 import "@/styles/global.css";
 import Navbar from './../components/Navbar';
+
 export const metadata = {
   title: 'YTDL-Next',
-  description: 'Download your Favourite videos and music from YouTube',
+  description: 'Download your favourite videos and music from YouTube',
 }
 
 export default function RootLayout({
@@ -12,14 +13,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <script src="//code.tidio.co/qhhancpt76pkxaxn1jz28irsb5lcuszf.js" async></script>
+      <head>
+        <script src="//code.tidio.co/qhhancpt76pkxaxn1jz28irsb5lcuszf.js" async></script>
+      </head>
       <body>
-      <Navbar/>
-        <div>
-          {children}
-        </div>
-
+    
+          <Navbar />
+          <div>
+            {children}
+          </div>
+  
       </body>
     </html>
-  )
+  );
 }

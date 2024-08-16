@@ -1,16 +1,17 @@
 "use client"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Bars3BottomRightIcon, XMarkIcon } from '@heroicons/react/24/solid';
+//  MoonIcon, SunIcon
 import Link from 'next/link';
 
 const Navbar = () => {
+    
     const links = [
         { name: 'Home', link: '/' },
         { name: 'About', link: 'about' },
         { name: 'Projects', link: 'projects' },
         { name: 'Contact me', link: 'contact' },
     ];
-
     const [open, setOpen] = useState<boolean>(false);
 
     useEffect(() => {
@@ -20,6 +21,7 @@ const Navbar = () => {
     const toggleMenu = () => {
         setOpen(!open);
     };
+console.log()
 
     return (
         <div className="w-full max-w-screen fixed top-0 left-0 z-50 backdrop-blur">

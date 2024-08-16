@@ -3,6 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect, Suspense } from 'react';
 import Image from 'next/image';
+// import { calculateFileSize } from '@/utils/calculateFileSize';
 
 interface Thumbnail {
     url: string;
@@ -19,6 +20,7 @@ interface VideoData {
     thumbnail: Thumbnail[];
     url: string;
     adaptiveFormats: AdaptiveFormat[];
+    lengthSeconds: number;
 }
 const DownloadPageContent: React.FC = () => {
     const searchParams = useSearchParams();
@@ -159,15 +161,16 @@ const DownloadPageContent: React.FC = () => {
                                 <div className="flex-1 pl-2">
                                     <label className="block text-gray-600 mb-2">Format</label>
                                     <select
+                                    disabled={!resolution}
                                         className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 
                                     >
-
+                                        <option value="">Video/mp4</option>
 
                                     </select>
                                 </div>
                             </div>
-                            <div className="text-gray-600 text-sm mb-4 font-semibold">File Size: 5mb</div>
+                            <div className="text-gray-600 text-sm mb-4 font-semibold">Video Duration: {videoData.lengthSeconds}</div>
                             <button className="bg-red-500 text-white py-2 w-full rounded-lg" onClick={handleDownload}>
                                 Download
                             </button>
