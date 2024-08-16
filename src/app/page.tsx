@@ -1,24 +1,25 @@
 import Head from 'next/head';
 import { GlobeAltIcon, StarIcon, EyeIcon, SunIcon } from '@heroicons/react/24/solid';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Home() {
     const ICONS = [
         {
             icon: GlobeAltIcon,
-            description: "lorem5"
+            description: "Global Access"
         },
         {
             icon: StarIcon,
-            description: "lorem5"
+            description: "Lossless Quality (4k)"
         },
         {
             icon: EyeIcon,
-            description: "lorem5"
+            description: "No Privacy Risks"
         },
         {
             icon: SunIcon,
-            description: "lorem5"
+            description: "Fast Downloads"
         },
 
     ]
@@ -31,14 +32,13 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <section className="flex flex-col lg:flex-row justify-between items-start min-h-[100vh]">
-                <div className="lg:w-1/2 md:px-10">
-                    <div className="font-bold text-2xl mb-8 mt-10">LOGO</div>
-                    <h1 className="text-4xl lg:text-6xl font-bold mb-4">
+            <section className="flex flex-col lg:flex-row justify-evenly items-start min-h-[100vh] md:py-10">
+                <div className="lg:w-1/2 md:px-10 mb-18">
+                    <h1 className="text-4xl lg:text-6xl font-bold mb-4 mt-20">
                         Download Videos from <span className='text-red-500'>YouTube</span>
                     </h1>
                     <p className="text-lg mb-8">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Faucibus in libero risus semper habitant arcu eget. Et integer facilisi eget diam.
+                        Download your Favourite YouTube videos and music for Free. No Ads
                     </p>
                     <div className="flex gap-4 mb-8">
                         <Link href="/download">
@@ -59,8 +59,15 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="lg:w-1/2 relative mt-12 lg:mt-0">
-                </div>
+                {/* <div className="lg:w-1/2 relative mt-12 lg:mt-0"> */}
+                <Image
+                    src="/images/hero.png"
+                    alt="Hero image of Youtube Downloader app"
+                    width={500}
+                    height={741}
+                    className='hidden md:block'
+                />
+                {/* </div> */}
 
             </section>
         </div>

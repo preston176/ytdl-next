@@ -20,7 +20,7 @@ export default function DownloadPage() {
     const videoIdFromQuery = searchParams.get('url');
     const [url, setUrl] = useState<string>(videoIdFromQuery || '');
     const [resolution, setResolution] = useState<string>(''); 
-    const [format, setFormat] = useState<string>('music/mp3');
+    const [format, setFormat] = useState<string>('video/mp4');
     const [videoData, setVideoData] = useState<VideoData | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
@@ -33,6 +33,7 @@ export default function DownloadPage() {
             handleSearch();
         }
     }, []);
+
 
     const extractVideoId = (url: string) => {
         const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
@@ -69,7 +70,7 @@ export default function DownloadPage() {
 
             const data: VideoData = await response.json();
             setVideoData(data);
-            console.log(videoData)
+            // console.log(videoData)
             setResolution(data.adaptiveFormats[0]?.url || ''); // Assuming adaptiveFormats is an array of objects with URL property
         } catch (error: any) {
             setError(error.message);
@@ -131,7 +132,9 @@ export default function DownloadPage() {
                                         onChange={(e) => setResolution(e.target.value)}
                                     >
                                         {videoData?.adaptiveFormats.map((item, index: number) => (
-                                            <option key={index} value={item?.url} onChange={(e) => setResolution(e.target.value)}>{item?.qualityLabel}</option>))}
+                                            <option key={index} value={item?.url} onChange={(e) => setResolution(e.target.value)}>
+                                                {item.qualityLabel !== "" && item.qualityLabel ? item?.qualityLabel : item?.audioQuality}
+                                            </option>))}
                                     </select>
                                 </div>
                                 <div className="flex-1 pl-2">
@@ -140,7 +143,7 @@ export default function DownloadPage() {
                                         className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 
                                     >
-
+                                     
 
                                     </select>
                                 </div>
