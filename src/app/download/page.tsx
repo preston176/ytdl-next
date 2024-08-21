@@ -53,38 +53,22 @@ const DownloadPageContent: React.FC = () => {
         setError(null);
 
         try {
-            const videoId = extractVideoId(url);
-
-            if (!videoId) {
-                throw new Error('Invalid YouTube URL');
-            }
-
-            const apiUrl = `https://ytstream-download-youtube-videos.p.rapidapi.com/dl?id=${encodeURIComponent(videoId)}`;
-            const options = {
-                method: 'GET',
-                headers: {
-                    // 'x-rapidapi-key': process.env.RAPID_API_KEY,
-                    'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
-                    'x-rapidapi-host': 'ytstream-download-youtube-videos.p.rapidapi.com',
-                },
-            };
-
-            const response = await fetch(apiUrl, options);
+            const response = await fetch(`/api/download?url=${encodeURIComponent(url)}`);
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Failed to fetch video data');
             }
 
             const data: VideoData = await response.json();
             setVideoData(data);
-            // console.log(videoData)
-            setResolution(data.adaptiveFormats[0]?.url || ''); // Assuming adaptiveFormats is an array of objects with URL property
+            setResolution(data.adaptiveFormats[0]?.url || '');
         } catch (error: any) {
             setError(error.message);
         } finally {
             setLoading(false);
         }
     };
+
 
     const handleDownload = async () => {
         try {
@@ -161,7 +145,7 @@ const DownloadPageContent: React.FC = () => {
                                 <div className="flex-1 pl-2">
                                     <label className="block text-gray-600 mb-2">Format</label>
                                     <select
-                                    disabled={!resolution}
+                                        disabled={!resolution}
                                         className="w-full border px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
 
                                     >
