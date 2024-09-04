@@ -119,11 +119,11 @@ export default function Home() {
                 <h2 className="text-3xl lg:text-4xl font-bold text-center mb-12">What Our Users Say</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     <div className="p-6 border rounded-lg">
-                        <p className="text-lg mb-4">"This app is incredible! It has made downloading videos so easy."</p>
+                        <p className="text-lg mb-4">&quot;This app is incredible! It has made downloading videos so easy.&quot;</p>
                         <h4 className="text-xl font-bold">David</h4>
                     </div>
                     <div className="p-6 border rounded-lg">
-                        <p className="text-lg mb-4">"I love the quality and speed of the downloads, never thought it was possible. Highly recommend!"</p>
+                        <p className="text-lg mb-4">&quot;I love the quality and speed of the downloads, never thought it was possible. Highly recommend!&quot;</p>
                         <h4 className="text-xl font-bold">Joseh </h4>
                     </div>
                 </div>
