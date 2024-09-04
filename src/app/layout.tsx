@@ -1,5 +1,6 @@
 import "@/styles/global.css";
 import Navbar from './../components/Navbar';
+import Footer from "@/components/Footer";
 
 export const metadata = {
   title: 'YTDL-Next',
@@ -22,7 +23,7 @@ export default function RootLayout({
           <div>
             {children}
           </div>
-  
+          <Footer />
       </body>
     </html>
   );
