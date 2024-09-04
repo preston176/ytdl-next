@@ -27,18 +27,29 @@ export async function GET(req: NextRequest) {
     }
 
     const extractVideoId = (url: string) => {
-        const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-        const match = url.match(regex);
-        return match ? match[1] : null;
+        const videoRegex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const playlistRegex = /(?:youtube\.com\/playlist\?list=)([a-zA-Z0-9_-]+)/;
+        
+        if (url.match(playlistRegex)) {
+            return { type: 'playlist', id: url.match(playlistRegex)?.[1] || null };
+        } else if (url.match(videoRegex)) {
+            return { type: 'video', id: url.match(videoRegex)?.[1] || null };
+        }
+        
+        return { type: null, id: null };
     };
 
-    const videoId = extractVideoId(url);
+    const { type, id } = extractVideoId(url);
 
-    if (!videoId) {
+    if (!id) {
         return NextResponse.json({ error: 'Invalid YouTube URL' }, { status: 400 });
     }
 
-    const apiUrl = `https://ytstream-download-youtube-videos.p.rapidapi.com/dl?id=${encodeURIComponent(videoId)}`;
+    if (type === 'playlist') {
+        return NextResponse.json({ message: 'This is a playlist' }, { status: 200 });
+    }
+
+    const apiUrl = `https://ytstream-download-youtube-videos.p.rapidapi.com/dl?id=${encodeURIComponent(id)}`;
     const options = {
         method: 'GET',
         headers: {

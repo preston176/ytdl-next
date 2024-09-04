@@ -21,7 +21,6 @@ const Navbar = () => {
     const toggleMenu = () => {
         setOpen(!open);
     };
-console.log()
 
     return (
         <div className="w-full max-w-screen fixed top-0 left-0 z-50 backdrop-blur">
