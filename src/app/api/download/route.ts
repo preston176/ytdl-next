@@ -55,6 +55,9 @@ export async function GET(req: NextRequest) {
         headers: {
             'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
             'x-rapidapi-host': 'ytstream-download-youtube-videos.p.rapidapi.com',
+            'Access-Control-Allow-Origin': '*',  // Allow all origins (or set specific domain instead of *)
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         },
     };
 
