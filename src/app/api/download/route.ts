@@ -55,9 +55,6 @@ export async function GET(req: NextRequest) {
         headers: {
             'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
             'x-rapidapi-host': 'ytstream-download-youtube-videos.p.rapidapi.com',
-            'Access-Control-Allow-Origin': '*',  // Allow all origins (or set specific domain instead of *)
-            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
         },
     };
 
@@ -71,6 +68,7 @@ export async function GET(req: NextRequest) {
         const data: VideoData = await response.json();
         return NextResponse.json(data);
     } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+        console.error('Error fetching video data:', error);  // Logs the error for debugging in Vercel
+        return NextResponse.json({ error: 'Internal Server Error', details: error.message }, { status: 500 });
     }
 }
