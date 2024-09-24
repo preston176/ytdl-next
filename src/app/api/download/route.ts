@@ -53,7 +53,7 @@ export async function GET(req: NextRequest) {
     const options = {
         method: 'GET',
         headers: {
-            'x-rapidapi-key': process.env.NEXT_PUBLIC_RAPID_API_KEY as string,
+            'x-rapidapi-key': process.env.RAPID_API_KEY as string,
             'x-rapidapi-host': 'ytstream-download-youtube-videos.p.rapidapi.com',
         },
     };
