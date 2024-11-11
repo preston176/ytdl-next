@@ -65,6 +65,7 @@ export default function Home() {
                     width={500}
                     height={741}
                     className='hidden md:block'
+                    quality={100}
                 />
             </section>
 

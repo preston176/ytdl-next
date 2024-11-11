@@ -121,6 +121,7 @@ const DownloadPageContent: React.FC = () => {
                                 width={400}
                                 height={225}
                                 className="rounded-lg"
+                                quality={100}
                             />
                         </div>
 
